@@ -1,17 +1,20 @@
 <template>
     <div class="post">
-        <slot name="title"></slot>
-        <slot name="info">
-        </slot>
+        <slot
+            name="title"
+            class="post__title"
+        />
+        <slot
+            name="info"
+            class="post__info"
+        />
+       
     </div>
 </template>
 
 <script>
 export default {
-    name: 'PostItem',
-    props: {
-        items: Array,
-    }
+    name: 'PostItem'
 }
 </script>
 
@@ -19,15 +22,22 @@ export default {
 h3 {
     margin: 40px 0 0;
 }
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    display: inline-block;
-    margin: 0 10px;
-}
 a {
     color: #42b983;
+}
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid lightgreen;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 5px auto;
+    max-width: 800px;
+
+    &__title {
+        color: black;
+        text-transform: uppercase
+    }
 }
 </style>

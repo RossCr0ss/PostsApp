@@ -6,14 +6,12 @@
             <router-link to="/">Logout</router-link>
         </div>
         <PostItem
-            v-for="item in USERS"
+            v-for="item in POSTS"
             :key="item.id"
             class="postitem"
         >
-            <h3 slot="title" class="title">{{item.name}}</h3>
-            <p slot="info" class="subtitle">{{item.username}}</p>
-            <p slot="info" class="subtitle">{{item.email}}</p>
-            <p slot="info" class="subtitle">{{item.phone}}</p>
+            <h3 slot="title" class="title">{{item.title}}</h3>
+            <p slot="info" class="subtitle">{{item.body}}</p>
         </PostItem>
     </div>
 </template>
@@ -34,15 +32,18 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'USERS'
+            'USERS',
+            'POSTS'
         ])
     },
     mounted() {
-        this.GET_USERS_FROM_API()
+        this.GET_USERS_FROM_API(),
+        this.GET_POSTS_FROM_API()
     },
     methods: {
         ...mapActions([
-            'GET_USERS_FROM_API'
+            'GET_USERS_FROM_API',
+            'GET_POSTS_FROM_API'
         ]),
     }   
 }
