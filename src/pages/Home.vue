@@ -11,11 +11,25 @@
 
 <script>
 import HelloWorld from '@/components/HelloWorld.vue'
+import { mapActions } from 'vuex'
 
 export default {
     name: 'Home',
     components: {
         HelloWorld
-    }
+    },
+    data() {
+        return {
+            info: null
+        }
+    },
+    mounted() {
+        this.GET_USERS_FROM_API()
+    },
+    methods: {
+        ...mapActions([
+            'GET_USERS_FROM_API'
+        ])
+    }   
 }
 </script>

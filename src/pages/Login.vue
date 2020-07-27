@@ -34,25 +34,43 @@
                 </router-link>
             </div>
         </form>
+        <!-- <div v-for="item of USERS" :key="item.name">
+            {{item}}
+        </div> -->
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
             error: false,
-            email: ''
+            email: '',
+            info: null
         }
     },
+    computed: {
+        ...mapGetters([
+            'USERS'
+        ])
+    },
+    mounted() {
+        this.GET_USERS_FROM_API()
+    },
     methods: {
+         ...mapActions([
+            'GET_USERS_FROM_API'
+        ]),
         navToHome() {
-           if (this.email == 'test@test.com') {
-                this.$router.push('home')
-                console.log('Success logging...');
-           } else {
-               this.error = true
-           }
+            this.USERS.forEach(item => {
+                if (this.email == item.email) {
+                    this.$router.push('home')
+                } else {
+                    this.error = true
+                }
+            })
         }
     }
 }
