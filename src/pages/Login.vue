@@ -34,9 +34,6 @@
                 </router-link>
             </div>
         </form>
-        <!-- <div v-for="item of USERS" :key="item.name">
-            {{item}}
-        </div> -->
     </div>
 </template>
 
@@ -48,7 +45,6 @@ export default {
         return {
             error: false,
             email: '',
-            info: null
         }
     },
     computed: {

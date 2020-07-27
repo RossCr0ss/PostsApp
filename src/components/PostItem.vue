@@ -1,16 +1,16 @@
 <template>
-    <div class="hello">
-        <h1>{{ msg }}</h1>
+    <div class="post">
+        <slot name="title"></slot>
+        <slot name="info">
+        </slot>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'HelloWorld',
-    data() {
-        return {
-        msg: 'Hello World Page!'
-        }
+    name: 'PostItem',
+    props: {
+        items: Array,
     }
 }
 </script>

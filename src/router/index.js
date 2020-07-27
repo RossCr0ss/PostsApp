@@ -19,6 +19,11 @@ Vue.use(VueRouter)
         name: 'user',
         component: () => import('@/pages/User.vue')
     },
+    {
+        path: '/post',
+        name: 'post',
+        component: () => import('@/pages/PostInfo.vue')
+    },
 
     { 
         path: '*', 

@@ -5,23 +5,37 @@
             <router-link to="/user">User</router-link> |
             <router-link to="/">Logout</router-link>
         </div>
-        <HelloWorld/>
+        <PostItem
+            v-for="item in USERS"
+            :key="item.id"
+            class="postitem"
+        >
+            <h3 slot="title" class="title">{{item.name}}</h3>
+            <p slot="info" class="subtitle">{{item.username}}</p>
+            <p slot="info" class="subtitle">{{item.email}}</p>
+            <p slot="info" class="subtitle">{{item.phone}}</p>
+        </PostItem>
     </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
-import { mapActions } from 'vuex'
+import PostItem from '@/components/PostItem.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     name: 'Home',
     components: {
-        HelloWorld
+        PostItem
     },
     data() {
         return {
             info: null
         }
+    },
+    computed: {
+        ...mapGetters([
+            'USERS'
+        ])
     },
     mounted() {
         this.GET_USERS_FROM_API()
@@ -29,7 +43,7 @@ export default {
     methods: {
         ...mapActions([
             'GET_USERS_FROM_API'
-        ])
+        ]),
     }   
 }
 </script>
