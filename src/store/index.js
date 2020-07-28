@@ -68,6 +68,9 @@ export default new Vuex.Store({
         },
         logUser(state) {
             return state.logUser
+        },
+        userById (state) {
+            return state.users.find(user => user.id === state.logUser.id)
         }
     }
 })

@@ -56,15 +56,14 @@ export default {
         this.GET_USERS_FROM_API(),
         this.GET_POSTS_FROM_API()
     },
-        /* this.GET_LOG_USER() */
     methods: {
         ...mapActions([
             'GET_USERS_FROM_API',
             'GET_POSTS_FROM_API'
         ]),
-        navigateToUser() {
+        /* navigateToUser() {
             this.$router.push({name: 'User', params: {id: this.userId}})
-        }
+        } */
     }   
 }
 </script>
