@@ -2,9 +2,12 @@
     <div class="home">
         <div id="nav">
             <router-link to="/home">Home</router-link> |
-            <router-link to="/user">User</router-link> |
+            <router-link :to="'/user/' + userId" >User</router-link> |
             <router-link to="/">Logout</router-link>
         </div>
+        <hr>
+        {{userId}}
+        <hr>
         <PostItem
             v-for="item in POSTS"
             :key="item.id"
@@ -12,9 +15,10 @@
         >
             <h3 slot="title">{{item.title}}</h3>
             <p slot="info">{{item.body}}</p>
+            {{item}}
             <router-link
                 slot="link"
-                to="user/1"
+                :to="'/user/' + item.userId"
                 tag="a"
             >
                 User Profile
@@ -34,24 +38,33 @@ export default {
     },
     data() {
         return {
-            info: null
+            info: null,
+            userId: null
         }
     },
     computed: {
         ...mapGetters([
             'USERS',
-            'POSTS'
+            'POSTS',
+            'logUser'
         ])
+    },
+    created() {
+        this.userId = this.$store.state.logUser.id
     },
     mounted() {
         this.GET_USERS_FROM_API(),
         this.GET_POSTS_FROM_API()
     },
+        /* this.GET_LOG_USER() */
     methods: {
         ...mapActions([
             'GET_USERS_FROM_API',
             'GET_POSTS_FROM_API'
         ]),
+        navigateToUser() {
+            this.$router.push({name: 'User', params: {id: this.userId}})
+        }
     }   
 }
 </script>

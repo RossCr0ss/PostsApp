@@ -7,7 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         users: [],
-        posts: []
+        posts: [],
+        logUser: [
+            {
+               /*  'name': 'Edik' */
+            }
+        ]
     },
     mutations: {
         SET_USERS_TO_STATE(state, users) {
@@ -16,8 +21,17 @@ export default new Vuex.Store({
         SET_POSTS_TO_STATE(state, posts) {
             state.posts = posts
         },
+        SET_USER_IS_LOGGED(state, user) {
+            state.logUser = user
+        }
     },
     actions: {
+        GET_LOG_USER({state}) {
+            /* const id = state.logUser.id */
+            return axios (`https://jsonplaceholder.typicode.com/users/${state.logUser.id}`, {
+                method: 'GET'
+            })
+        },
         GET_USERS_FROM_API({commit}) {
             return axios('https://jsonplaceholder.typicode.com/users', {
                 method: 'GET'
@@ -50,7 +64,10 @@ export default new Vuex.Store({
             return state.users;
         },
         POSTS(state) {
-             return state.posts
+            return state.posts
+        },
+        logUser(state) {
+            return state.logUser
         }
     }
 })

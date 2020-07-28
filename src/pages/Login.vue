@@ -44,24 +44,27 @@ export default {
     data() {
         return {
             error: false,
-            email: '',
+            email: ''
         }
     },
     computed: {
-        ...mapGetters([
-            'USERS'
-        ])
+        USERS() {
+            return this.$store.getters.USERS
+        }
     },
     mounted() {
         this.GET_USERS_FROM_API()
     },
     methods: {
          ...mapActions([
-            'GET_USERS_FROM_API'
+            'GET_USERS_FROM_API',
+            'SET_USER_IS_LOGGED'
         ]),
+        
         login() {
             this.USERS.forEach(item => {
                 if (this.email == item.email) {
+                    this.$store.commit('SET_USER_IS_LOGGED', item) 
                     this.$router.push('home')
                 } else {
                     this.error = true
