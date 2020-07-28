@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '@/pages/Login.vue'
+import Home from '@/pages/Home.vue'
+import User from '@/pages/User.vue'
+import PostInfo from '@/pages/PostInfo.vue'
 
 Vue.use(VueRouter)
     const routes = [
@@ -12,22 +15,22 @@ Vue.use(VueRouter)
     {
         path: '/home',
         name: 'home',
-        component: () => import('@/pages/Home.vue')
+        component: Home
     },
     {
         path: '/user',
         name: 'user',
-        component: () => import('@/pages/User.vue')
+        component: User
     },
     {
         path: '/post',
         name: 'post',
-        component: () => import('@/pages/PostInfo.vue')
+        component: PostInfo
     },
 
     { 
         path: '*', 
-        redirect: '/' 
+        redirect: '/home' 
     }
 ]
 

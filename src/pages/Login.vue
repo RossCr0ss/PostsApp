@@ -26,8 +26,8 @@
             <div class="form__box">
                 <router-link
                     class="btn"
-                    to="/login"
-                    @click.native="navToHome()"
+                    to="/"
+                    @click.native="login()"
                     replace
                 >
                     Login
@@ -59,7 +59,7 @@ export default {
          ...mapActions([
             'GET_USERS_FROM_API'
         ]),
-        navToHome() {
+        login() {
             this.USERS.forEach(item => {
                 if (this.email == item.email) {
                     this.$router.push('home')

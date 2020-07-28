@@ -8,6 +8,10 @@
             name="info"
             class="post__info"
         />
+        <slot
+            name="link"
+            class="post__link"
+        />
        
     </div>
 </template>

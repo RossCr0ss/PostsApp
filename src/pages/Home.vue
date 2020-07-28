@@ -10,8 +10,15 @@
             :key="item.id"
             class="postitem"
         >
-            <h3 slot="title" class="title">{{item.title}}</h3>
-            <p slot="info" class="subtitle">{{item.body}}</p>
+            <h3 slot="title">{{item.title}}</h3>
+            <p slot="info">{{item.body}}</p>
+            <router-link
+                slot="link"
+                to="user/1"
+                tag="a"
+            >
+                User Profile
+            </router-link>
         </PostItem>
     </div>
 </template>
