@@ -6,6 +6,7 @@
             <router-link to="/">Logout</router-link>
         </div>
         <hr>
+        <h1>Welcome to Home page</h1>
         logUserId: {{logUserId}}
         <hr>
         <PostItem
@@ -62,9 +63,6 @@ export default {
             'GET_USERS_FROM_API',
             'GET_POSTS_FROM_API'
         ]),
-        /* navigateToUser() {
-            this.$router.push({name: 'User', params: {id: this.userId}})
-        } */
     }   
 }
 </script>

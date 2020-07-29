@@ -14,6 +14,7 @@
                     id="email"
                     class="input"
                     v-model="email"
+                    placeholder="Write email"
                 />
                 <span 
                     v-show="error" 
@@ -44,32 +45,56 @@ export default {
     data() {
         return {
             error: false,
-            email: ''
+            email: '',
+            user: null,
+            users: null,
+            logStatus: false,
         }
     },
     computed: {
-        USERS() {
-            return this.$store.getters.USERS
-        }
+        ...mapGetters([
+            'USERS',
+            'LOG_USER'
+        ])
     },
     mounted() {
-        this.GET_USERS_FROM_API()
+        this.GET_USERS();
+        this.CHANGE_LOGIN_STATUS(this.logStatus);
     },
+    /* async mounted() {
+        await this.GET_USERS();
+        await this.CHANGE_LOGIN_STATUS(this.logStatus);
+    }, */
     methods: {
          ...mapActions([
-            'GET_USERS_FROM_API',
-            'SET_USER_IS_LOGGED'
+            'GET_USERS',
+            'CHANGE_LOGIN_STATUS'
         ]),
         
         login() {
-            this.USERS.forEach(item => {
+            /* this.USERS.forEach(item => {
                 if (this.email == item.email) {
                     this.$store.commit('SET_USER_IS_LOGGED', item) 
                     this.$router.push('home')
                 } else {
                     this.error = true
                 }
-            })
+            }) */
+
+
+            let array = (this.users = this.GET_USERS);
+            let user = (this.user = this.email);
+            for (let i = 0; i < array.length; i++) {
+                if (user === array[i].email) {
+                this.logStatus = true;
+                this.CHANGE_LOGIN_STATUS(this.logStatus);
+                this.CHANGE_USER_INFO(i);
+                this.$router.push({ name: "home" });
+                } else {
+                this.error = "Try this email: Sincere@april.biz";
+                this.email = "";
+                }
+            }
         }
     }
 }

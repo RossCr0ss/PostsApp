@@ -6,71 +6,51 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        users: [],
-        posts: [],
-        logUser: [
-            {
-               /*  'name': 'Edik' */
-            }
-        ]
+        USERS:[],
+        logUser: {
+            status: false
+        },
+        logUserInfo:{
+            id: null
+        }
     },
     mutations: {
-        SET_USERS_TO_STATE(state, users) {
-            state.users = users
+        SET_USERS_TO_STATE(state, users){
+            return state.USERS = users
         },
-        SET_POSTS_TO_STATE(state, posts) {
-            state.posts = posts
+        SET_USER_LOGIN_STATUS(state, payload){
+            return state.logUser.status = payload
         },
-        SET_USER_IS_LOGGED(state, user) {
-            state.logUser = user
+        SET_USER_INFO(state, payload){
+            return state.logUserInfo.id = payload
         }
     },
     actions: {
-        GET_LOG_USER({state}) {
-            /* const id = state.logUser.id */
-            return axios (`https://jsonplaceholder.typicode.com/users/${state.logUser.id}`, {
-                method: 'GET'
-            })
-        },
-        GET_USERS_FROM_API({commit}) {
+        GET_USERS({commit}) {
             return axios('https://jsonplaceholder.typicode.com/users', {
                 method: 'GET'
             })
-            .then((users) => {
+            .then((users)=>{
                 commit('SET_USERS_TO_STATE', users.data)
                 return users
             })
-            .catch((error) => {
-                console.log(error)
-                return error
-            })
         },
-        GET_POSTS_FROM_API({commit}) {
-            return axios('https://jsonplaceholder.typicode.com/posts', {
-                method: 'GET'
-            })
-            .then((posts) => {
-                commit('SET_POSTS_TO_STATE', posts.data)
-                return posts
-            })
-            .catch((error) => {
-                console.log(error)
-                return error
-            })
+        CHANGE_LOGIN_STATUS({commit}, payload){
+            commit('SET_USER_LOGIN_STATUS', payload)
         },
+        CHANGE_USER_INFO({commit}, payload){
+            commit('SET_USER_INFO', payload)
+        }
     },
     getters: {
         USERS(state) {
-            return state.users;
+            return state.users
         },
-        POSTS(state) {
-            return state.posts
+        LOG_USER(state) {
+            return state.logUser.status
         },
-        logUser(state) {
-            return state.logUser
-        },
-        userById (state) {
-            return state.users.find(user => user.id === state.logUser.id)
+        GET_USER_BY_ID(state) {
+            return state.logUserInfo.id
         }
     }
 })
