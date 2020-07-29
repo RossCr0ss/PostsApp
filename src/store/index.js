@@ -6,33 +6,31 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        users: [],
         posts: [],
-        logUser: [
-            {
-               /*  'name': 'Edik' */
-            }
-        ]
+        users: [],
+        userLogging: {
+            isLogging: false
+        },
+        logUser: {
+            userId: null
+        }
     },
     mutations: {
         SET_USERS_TO_STATE(state, users) {
-            state.users = users
+            return state.users = users
+        },
+        UPDATE_USER_LOGGING(state, payload) {
+            return state.userLogging.isLogging = payload
+        },
+        UPDATE_USER_INFO(state, payload) {
+            return state.logUser.userId = payload
         },
         SET_POSTS_TO_STATE(state, posts) {
-            state.posts = posts
-        },
-        SET_USER_IS_LOGGED(state, user) {
-            state.logUser = user
+            return state.posts = posts
         }
     },
     actions: {
-        GET_LOG_USER({state}) {
-            /* const id = state.logUser.id */
-            return axios (`https://jsonplaceholder.typicode.com/users/${state.logUser.id}`, {
-                method: 'GET'
-            })
-        },
-        GET_USERS_FROM_API({commit}) {
+        GET_USERS({commit}) {
             return axios('https://jsonplaceholder.typicode.com/users', {
                 method: 'GET'
             })
@@ -45,7 +43,13 @@ export default new Vuex.Store({
                 return error
             })
         },
-        GET_POSTS_FROM_API({commit}) {
+        CHANGE_LOGED({commit}, payload) {
+            commit('UPDATE_USER_LOGGING', payload)
+        },
+        SET_USER_INFO({commit}, payload) {
+            commit('UPDATE_USER_INFO', payload)
+        },
+        GET_POSTS({commit}) {
             return axios('https://jsonplaceholder.typicode.com/posts', {
                 method: 'GET'
             })
@@ -60,17 +64,17 @@ export default new Vuex.Store({
         },
     },
     getters: {
-        USERS(state) {
-            return state.users;
+        ALL_USERS(state) {
+            return state.users
         },
-        POSTS(state) {
+        IS_USER_LOGGING(state) {
+            return state.userLogging.isLogging
+        },
+        GET_USER_INFO(state) {
+            return state.logUser.userId
+        },
+        ALL_POSTS(state) {
             return state.posts
-        },
-        logUser(state) {
-            return state.logUser
-        },
-        userById (state) {
-            return state.users.find(user => user.id === state.logUser.id)
         }
     }
 })

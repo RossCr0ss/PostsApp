@@ -1,49 +1,59 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '@/pages/Login.vue'
-import Home from '@/pages/Home.vue'
-import User from '@/pages/User.vue'
-import PostInfo from '@/pages/PostInfo.vue'
+import Login from "../views/Login";
+import Home from "../views/Home";
+import PostInfo from "../views/PostInfo";
+import User from "../views/User";
+import UserInfo from "../views/UserInfo";
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
-    const routes = [
-    {
-        path: '/',
-        name: 'Login',
-        component: Login
-    },
-    {
-        path: '/home',
+const routes = [{
+        path: '/postsapp',
         name: 'home',
         component: Home
     },
-    /* {
-        path: '/user',
-        name: 'user',
-        component: User
-    }, */
     {
-        path: '/users/:id',
-        props: true,
-        name: 'user',
-        component: User
-    },
-    {
-        path: '/post',
+        path: '/postsapp/post/:id',
         name: 'post',
-        component: PostInfo
+        component: PostInfo,
+        props: true
     },
-
-    { 
-        path: '*', 
-        redirect: '/home' 
+    {
+        path: '/postsapp/user/:id',
+        name: 'user',
+        component: User,
+        props: true
+    },
+    {
+        path: '/postsapp/userinfo/:id',
+        name: 'userinfo',
+        component: UserInfo,
+        props: true
+    },
+    {
+        path: '/',
+        redirect: {
+            name: 'login'
+        },
+    },
+    {
+        path: '*',
+        redirect: {
+            name: 'login'
+        },
+    },
+    {
+        path: '/postsapp/login',
+        name: 'login',
+        component: Login
     }
-]
+
+];
 
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
-})
+});
 
 export default router
