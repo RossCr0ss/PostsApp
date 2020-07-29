@@ -23,7 +23,7 @@ Vue.use(VueRouter)
         component: User
     }, */
     {
-        path: '/user/:id',
+        path: '/users/:id',
         props: true,
         name: 'user',
         component: User

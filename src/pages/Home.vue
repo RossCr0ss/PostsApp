@@ -2,11 +2,11 @@
     <div class="home">
         <div id="nav">
             <router-link to="/home">Home</router-link> |
-            <router-link :to="'/user/' + userId" >User</router-link> |
+            <router-link :to="'/users/' + logUserId" >User</router-link> |
             <router-link to="/">Logout</router-link>
         </div>
         <hr>
-        {{userId}}
+        logUserId: {{logUserId}}
         <hr>
         <PostItem
             v-for="item in POSTS"
@@ -39,7 +39,8 @@ export default {
     data() {
         return {
             info: null,
-            userId: null
+            userId: null,
+            logUserId: null
         }
     },
     computed: {
@@ -50,7 +51,7 @@ export default {
         ])
     },
     created() {
-        this.userId = this.$store.state.logUser.id
+        this.logUserId = this.$store.state.logUser.id
     },
     mounted() {
         this.GET_USERS_FROM_API(),

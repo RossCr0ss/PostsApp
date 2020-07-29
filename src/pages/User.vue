@@ -2,11 +2,13 @@
     <div class="user">
         <div id="nav">
             <router-link to="/home">Home</router-link> |
-            <router-link :to="'/user/' + userId">User</router-link> |
+            <router-link :to="'/users/' + logUserId">User</router-link> |
             <router-link to="/">Logout</router-link>
         </div>
         <h1>This is an {{userById.username}} page</h1>
         {{userById}}
+        <br>
+        {{$route.params.id}}
     </div>
 </template>
 
@@ -16,7 +18,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
     data() {
         return {
-            userId: null
+            userId: null,
+            logUserId: null
         }
     },
     computed: {
@@ -24,10 +27,10 @@ export default {
             'userById'
         ])
     },
-    /* created() {
-        this.userId = this.$store.state.logUser.id
+    created() {
+        this.logUserId = this.$store.state.logUser.id
     },
-    mounted() {
+    /* mounted() {
         this.GET_USERS_FROM_API(),
         this.GET_POSTS_FROM_API()
     },
