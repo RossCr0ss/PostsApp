@@ -53,9 +53,9 @@ export default {
     },
     mounted() {
         if (this.IS_USER_LOGGING === false) {
-            this.$router.push({ name: "login" });
+            this.$router.push({ name: "login" })
         } else {
-            this.GET_POSTS();
+            this.GET_POSTS()
         }
     },
 };
