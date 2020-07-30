@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="IS_USER_LOGGING">
         <div id="nav">
             <router-link
                 class="link"
@@ -24,7 +24,7 @@
                     name:'login'
                 }"
             >
-            Logout
+                Logout
             </router-link>
         </div>
         <PostsList v-bind:posts="ALL_POSTS" />

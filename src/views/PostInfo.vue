@@ -1,5 +1,5 @@
 <template>
-    <div class="post_info">
+    <div class="post_info" v-if="IS_USER_LOGGING">
         <div id="nav">
             <router-link
                 class="link"
@@ -22,10 +22,7 @@
                 Logout
             </router-link>
         </div>
-        <div 
-            v-if="IS_USER_LOGGING"
-            class="item"
-        >   
+        <div class="item">   
             <h3>Post #{{ ALL_POSTS[this.id-1].id }}</h3>
             <p class="item__title">{{ ALL_POSTS[this.id-1].title }}</p>
             <p class="item__body">{{ ALL_POSTS[this.id-1].body }}</p>
