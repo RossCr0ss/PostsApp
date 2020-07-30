@@ -32,12 +32,19 @@
         </div>
         <div class="comments">
             <hr/>
-            <ul>
+            <ul class="comments__list">
                 <li
                     v-for="item in filteredArray"
                     :key="item.name"
+                    class="item"
                 >
-                    {{item}}
+                    <div class="item__email">
+                        {{ item.email }}
+                    </div>
+                    <div class="item__info">
+                        <h3>{{ item.name }}</h3>
+                        <p>{{ item.body }}</p>
+                    </div>
                 </li>
             </ul>
             <hr>
@@ -100,6 +107,40 @@ export default {
 
         &__body {
             text-align: justify;
+        }
+    }
+
+    .comments {
+        max-width: 800px;
+        margin: 0 auto;
+
+        &__list {
+            list-style-type: none;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            padding-inline-start: 0;
+
+            .item {
+                display: flex;
+                justify-content: space-between;
+                box-shadow: 0 1px 20px 0 rgba(0,0,0,.1);
+
+                &__email {
+                    display: flex;
+                    width: 200px;
+                    padding: 20px 10px;
+                }
+
+                &__info {
+                    display: flex;
+                    flex-direction: column;
+                    width: 600px;
+
+                    p {
+                        text-align: justify;
+                    }
+                }
+            }
         }
     }
 }
