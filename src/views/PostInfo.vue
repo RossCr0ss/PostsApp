@@ -30,26 +30,58 @@
             <p class="item__title">{{ ALL_POSTS[this.id-1].title }}</p>
             <p class="item__body">{{ ALL_POSTS[this.id-1].body }}</p>
         </div>
+        <div class="comments">
+            <hr/>
+            <ul>
+                <li
+                    v-for="item in filteredArray"
+                    :key="item.name"
+                >
+                    {{item}}
+                </li>
+            </ul>
+            <hr>
+        </div>
     </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
     name: "PostInfo",
     data() {
         return {
-            render: null,
+            filteredArray: []
         };
     },
     props: ["id"],
     computed: {
-        ...mapGetters(["ALL_POSTS", "IS_USER_LOGGING"]),
+        ...mapGetters([
+            "ALL_POSTS",
+            "IS_USER_LOGGING",
+            "ALL_COMMENTS"
+        ]),
     },
+    created() {
+        for (let index = 0; index < this.ALL_COMMENTS.length; index++) { 
+            let element = this.ALL_COMMENTS[index]
+            if (this.ALL_COMMENTS[index].postId === this.id) {
+                this.filteredArray.push(element)
+            }
+        }
+    },
+
     mounted() {
         if (this.IS_USER_LOGGING === false) {
             this.$router.push({ name: "login" });
+        } else {
+            this.GET_COMMENTS()
         }
+    },
+    methods: {
+        ...mapActions([
+            "GET_COMMENTS"
+        ])
     },
 };
 </script>

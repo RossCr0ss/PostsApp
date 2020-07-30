@@ -8,6 +8,7 @@ export default new Vuex.Store({
     state: {
         posts: [],
         users: [],
+        comments: [],
         userLogging: {
             isLogging: false
         },
@@ -27,6 +28,9 @@ export default new Vuex.Store({
         },
         SET_POSTS_TO_STATE(state, posts) {
             return state.posts = posts
+        },
+        SET_COMMENTS_TO_STATE(state, comments) {
+            return state.comments = comments
         }
     },
     actions: {
@@ -62,6 +66,19 @@ export default new Vuex.Store({
                 return error
             })
         },
+        GET_COMMENTS({commit}) {
+            return axios('https://jsonplaceholder.typicode.com/comments', {
+                method: 'GET'
+            })
+            .then((comments) => {
+                commit('SET_COMMENTS_TO_STATE', comments.data)
+                return comments
+            })
+            .catch((error) => {
+                console.log(error)
+                return error
+            })
+        }
     },
     getters: {
         ALL_USERS(state) {
@@ -75,6 +92,9 @@ export default new Vuex.Store({
         },
         ALL_POSTS(state) {
             return state.posts
-        }
+        },
+        ALL_COMMENTS(state) {
+            return state.comments
+        },
     }
 })
