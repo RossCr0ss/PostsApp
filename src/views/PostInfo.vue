@@ -53,7 +53,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex"
+
 export default {
     name: "PostInfo",
     data() {
@@ -94,6 +95,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .post_info {
     .item {
         padding: 16px;

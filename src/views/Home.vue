@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import PostsList from "@/components/PostsList";
+import { mapGetters, mapActions } from "vuex"
+import PostsList from "@/components/PostsList"
 
 export default {
     name: "Home",
     components: { 
         PostsList 
-        },
+    },
     computed: {
         ...mapGetters([
             "IS_USER_LOGGING", 
@@ -57,6 +57,6 @@ export default {
         } else {
             this.GET_POSTS()
         }
-    },
+    }
 };
 </script>

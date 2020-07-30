@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import PostItem from "@/components/PostItem";
+import PostItem from "@/components/PostItem"
 
 export default {
     name: "PostsList",
@@ -25,7 +25,7 @@ export default {
         allPosts() {
             return this.posts;
         }
-    }
+    },
 }
 </script>
 

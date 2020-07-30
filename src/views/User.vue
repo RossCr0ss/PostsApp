@@ -11,7 +11,7 @@
                 class="link"
                 :to="{
                     name: 'user',
-                    params: { id: 0 }
+                    params: { id: 1 }
                 }"
             >
                 User
