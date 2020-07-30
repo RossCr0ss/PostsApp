@@ -1,6 +1,6 @@
 <template>
     <ul class="list">
-        <PostsListItem
+        <PostItem
             v-for="post in allPosts" 
             :key="post.id" 
             v-bind:post="post"
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import PostsListItem from "@/components/PostsListItem";
+import PostItem from "@/components/PostItem";
 
 export default {
     name: "PostsList",
     components: { 
-        PostsListItem 
+        PostItem 
     },
     props: {
         posts: {
@@ -30,4 +30,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.list {
+    padding-inline-start: 0;
+}
+
 </style>
