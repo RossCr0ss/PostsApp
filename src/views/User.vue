@@ -1,5 +1,5 @@
 <template>
-    <div class="user-info" v-if="IS_USER_LOGGING">
+    <div class="user" v-if="IS_USER_LOGGING">
         <div id="nav">
             <router-link
                 class="link"
@@ -23,12 +23,29 @@
                 Logout
             </router-link>
         </div>
-        <h3>My Info</h3>
-        <p><strong>User ID: </strong> {{ ALL_USERS[GET_USER_INFO].id }}</p>
-        <p><strong>User Name: </strong>{{ ALL_USERS[GET_USER_INFO].name }}</p>
-        <p><strong>User Username: </strong>{{ ALL_USERS[GET_USER_INFO].username }}</p>
-        <p><strong>User Email: </strong>{{ ALL_USERS[GET_USER_INFO].email }}</p>
-        <p><strong>User Address: </strong>{{ ALL_USERS[GET_USER_INFO].address.street }}</p>
+        <div class="wrapper">
+            <h1>This is an {{ ALL_USERS[GET_USER_INFO].username }} page</h1>
+            <hr>
+            <h3>User info:</h3>
+            <ul class="list">
+                <li class="list__item">
+                    <p class="attr">Name:</p>
+                    <p class="data">{{ ALL_USERS[GET_USER_INFO].name }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">Username:</p>
+                    <p class="data">{{ ALL_USERS[GET_USER_INFO].username }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">E-mail:</p>
+                    <p class="data">{{ ALL_USERS[GET_USER_INFO].email }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">Phone:</p>
+                    <p class="data">{{ ALL_USERS[GET_USER_INFO].phone }}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -52,6 +69,29 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
- 
+<style lang="scss">
+    
+.wrapper {
+    max-width: 400px;
+    margin: 0 auto 40px;
+
+    .list {
+        padding-inline-start: 0;
+
+        &__item {
+            list-style-type: none;
+            padding: 16px;
+            border-bottom: 1px solid rgba(44, 62, 80, 0.3);
+            display: flex;
+            justify-content: space-between;
+            margin: 10px auto;
+
+            .attr, .data {
+                margin-block-start: 0;
+                margin-block-end: 0;
+            }
+        }
+    }
+}
+        
 </style>

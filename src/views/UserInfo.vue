@@ -23,38 +23,39 @@
             Logout
             </router-link>
         </div>
-        <h3>Info about user who left that post</h3>
-        <p>
-            <strong>User Id:</strong>
-            {{ ALL_USERS[this.id].id }}
-        </p>
-        <p>
-            <strong>User Name:</strong>
-            {{ ALL_USERS[this.id].name }}
-        </p>
-        <p>
-            <strong>User UserName:</strong>
-            {{ ALL_USERS[this.id].username }}
-        </p>
-        <p>
-            <strong>User Email:</strong>
-            {{ ALL_USERS[this.id].email }}
-        </p>
-        <p>
-            <strong>User Address:</strong>
-            {{ ALL_USERS[this.id].address.street }}
-        </p>
-        <ul class="">
-        <label class="">All User POSTS</label>
-            <li
-                class=""
-                v-for="post in this.arrayUserPosts"
-                :key="post.id"
-            >
-                <h4 class>{{ post.title }}</h4>
-                <p class>{{ post.body }}</p>
-            </li>
-        </ul>
+        <div class="wrapper">
+        <h3>Post user info:</h3>
+            <ul class="list">
+                <li class="list__item">
+                    <p class="attr">Name:</p>
+                    <p class="data">{{ ALL_USERS[this.id-1].name }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">Username:</p>
+                    <p class="data">{{ ALL_USERS[this.id-1].username }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">E-mail:</p>
+                    <p class="data">{{ ALL_USERS[this.id-1].email }}</p>
+                </li>
+                <li class="list__item">
+                    <p class="attr">Phone:</p>
+                    <p class="data">{{ ALL_USERS[this.id-1].phone }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="list">
+            <h3>User posts:</h3>
+                <li
+                    class="list__item"
+                    v-for="post in this.arrayUserPosts"
+                    :key="post.id"
+                >
+                    <h4 class="title">{{ post.title }}</h4>
+                    <p class="body">{{ post.body }}</p>
+                </li>
+            </ul>
     </div>
 </template>
 
