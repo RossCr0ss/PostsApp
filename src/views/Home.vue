@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="IS_USER_LOGGING">
         <div id="nav">
             <router-link
                 class="link"
@@ -24,7 +24,7 @@
                     name:'login'
                 }"
             >
-            Logout
+                Logout
             </router-link>
         </div>
         <PostsList v-bind:posts="ALL_POSTS" />
@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import PostsList from "@/components/PostsList";
+import { mapGetters, mapActions } from "vuex"
+import PostsList from "@/components/PostsList"
 
 export default {
     name: "Home",
     components: { 
         PostsList 
-        },
+    },
     computed: {
         ...mapGetters([
             "IS_USER_LOGGING", 
@@ -57,6 +57,6 @@ export default {
         } else {
             this.GET_POSTS()
         }
-    },
+    }
 };
 </script>

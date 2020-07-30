@@ -34,6 +34,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .list__item {
     list-style-type: none;
     padding: 16px;

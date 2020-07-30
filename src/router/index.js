@@ -1,31 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from "../views/Login";
-import Home from "../views/Home";
-import PostInfo from "../views/PostInfo";
-import User from "../views/User";
-import UserInfo from "../views/UserInfo";
+import Login from "@/views/Login";
+import Home from "@/views/Home";
+import PostInfo from "@/views/PostInfo";
+import User from "@/views/User";
+import UserInfo from "@/views/UserInfo";
 Vue.use(VueRouter);
 
 const routes = [{
-        path: '/postsapp',
+        path: '/',
         name: 'home',
         component: Home
     },
     {
-        path: '/postsapp/post/:id',
+        path: '/post/:id',
         name: 'post',
         component: PostInfo,
         props: true
     },
     {
-        path: '/postsapp/user/:id',
+        path: '/user/:id',
         name: 'user',
         component: User,
         props: true
     },
     {
-        path: '/postsapp/userinfo/:id',
+        path: '/userinfo/:id',
         name: 'userinfo',
         component: UserInfo,
         props: true
@@ -43,7 +43,7 @@ const routes = [{
         },
     },
     {
-        path: '/postsapp/login',
+        path: '/login',
         name: 'login',
         component: Login
     }
